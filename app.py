@@ -9,7 +9,7 @@ app.config.from_object(app.config)
 
 @app.route('/')
 def hello():
-    return "Hello World!"
+    return os.environ['APP_SETTINGS']
 
 @app.route('/<name>')
 def hello_name(name):
