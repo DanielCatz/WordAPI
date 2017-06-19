@@ -1,15 +1,16 @@
-import os
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
-app.config.from_object(app.config)
-# app.config.from_envvar('APP_SETTINGS')
-#app.config.from_envvar('APP_SETTINGS')
-# app.config.from_pyfile('config.py')
+app.config.from_object(os.environ['APP_SETTINGS'])
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
+from models import Result
 @app.route('/')
 def hello():
-    return os.environ['APP_SETTINGS']
+    return 'Hello WURLD'
 
 @app.route('/<name>')
 def hello_name(name):
@@ -18,6 +19,3 @@ def hello_name(name):
 if __name__ == '__main__':
     app.run()
 
-print(os.environ['APP_SETTINGS'])
-# print(__name__)
-# print(basedir)
