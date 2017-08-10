@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html ng-app ="WordcountApp">
   <head>
     <title>Bears count too</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style>
       .container {
@@ -10,13 +11,13 @@
       }
     </style>
   </head>
-  <body>
+  <body ng-controller="WordcountController">
     <div class="container">
       <div class="row">
         <div class="col-sm-5 col-sm-offset-1">
           <h1>Bearcount</h1>
           <br>
-          <form role="form" method="POST" action="/">
+          <form role="form" ng-submit="getResults()" method="POST" action="/">
             <div class="form-group">
               <input type="text" name="url" class="form-control" id="url-box" placeholder="Enter URL..." style="max-width: 300px;">
             </div>
@@ -25,6 +26,9 @@
           <br>
           {% for error in errors %}
             <h4>{{ error }}</h4>
+          {% endfor %}
+          {% for output in outputs %}
+            <h4>{{ output }}</h4>
           {% endfor %}
           <br>
         </div>
