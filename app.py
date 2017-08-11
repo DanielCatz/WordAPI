@@ -23,12 +23,13 @@ from models import *
 @app.route('/', methods=['GET', 'POST'])
 def index():
     errors = []
-    results = {}
+    results = ''
     if request.method == "POST":
         # get url that the user has entered
         try:
             url = request.form['url']
             r = requests.get(url)
+            results= 'works'
             print(r.text)
         except:
             errors.append(
