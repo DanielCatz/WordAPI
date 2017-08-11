@@ -7,10 +7,10 @@ from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from stop_words import stops
 from collections import Counter
-from bs4 import BeautifulSoup
 from rq import Queue
 from rq.job import Job
 from worker import conn
+from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -23,6 +23,7 @@ from models import *
 @app.route('/', methods=['GET', 'POST'])
 def index():
     errors = []
+    outputs =[]
     results = {}
     if request.method == "POST":
         # get url that the person has entered
@@ -36,9 +37,13 @@ def index():
             return render_template('index.html', errors=errors)
         if r:
             # text processing
-            raw = BeautifulSoup(r.text, 'html.parser').get_text()
+            raw = BeautifulSoup(r.text)
+            for script in raw(["script","sytle"]):
+            	script.extract()
+            myText = raw.get_text()
+            outputs.append(myText)
             nltk.data.path.append('./nltk_data/')  # set the path
-            tokens = nltk.word_tokenize(raw)
+            tokens = nltk.word_tokenize(myText)
             text = nltk.Text(tokens)
             # remove punctuation, count raw words
             nonPunct = re.compile('.*[A-Za-z].*')
