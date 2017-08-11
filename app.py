@@ -23,7 +23,7 @@ from models import *
 def count_and_save_words(url):
 
     errors = []
-
+    outputs=[]
     try:
         r = requests.get(url)
     except:
@@ -33,14 +33,14 @@ def count_and_save_words(url):
         return {"error": errors}
 
     # text processing    
-            raw = BeautifulSoup(r.text)
-            for script in raw(["script","sytle"]):
-            	script.extract()
-            myText = raw.get_text()
-            outputs.append(myText)
-            nltk.data.path.append('./nltk_data/')  # set the path
-            tokens = nltk.word_tokenize(myText)
-            text = nltk.Text(tokens)
+    raw = BeautifulSoup(r.text)
+    for script in raw(["script","sytle"]):
+        script.extract()
+        myText = raw.get_text()
+        outputs.append(myText)
+        nltk.data.path.append('./nltk_data/')  # set the path
+        tokens = nltk.word_tokenize(myText)
+        text = nltk.Text(tokens)        
     # remove punctuation, count raw words
     nonPunct = re.compile('.*[A-Za-z].*')
     raw_words = [w for w in text if nonPunct.match(w)]
@@ -80,55 +80,6 @@ def index():
 
     return render_template('index.html', results=results)
 
-@app.route('/bob', methods=['GET', 'POST'])
-def bob():
-    errors = []
-    outputs =[]
-    results = {}
-    if request.method == "POST":
-        # get url that the person has entered
-        try:
-            url = request.form['url']
-            r = requests.get(url)
-        except:
-            errors.append(
-                "Unable to get URL. Please make sure it's valid and try again."
-            )
-            return render_template('index.html', errors=errors)
-        if r:
-            # text processing
-            raw = BeautifulSoup(r.text)
-            for script in raw(["script","sytle"]):
-            	script.extract()
-            myText = raw.get_text()
-            outputs.append(myText)
-            nltk.data.path.append('./nltk_data/')  # set the path
-            tokens = nltk.word_tokenize(myText)
-            text = nltk.Text(tokens)
-            # remove punctuation, count raw words
-            nonPunct = re.compile('.*[A-Za-z].*')
-            raw_words = [w for w in text if nonPunct.match(w)]
-            raw_word_count = Counter(raw_words)
-            # stop words
-            no_stop_words = [w for w in raw_words if w.lower() not in stops]
-            no_stop_words_count = Counter(no_stop_words)
-            # save the results
-            results = sorted(
-                no_stop_words_count.items(),
-                key=operator.itemgetter(1),
-                reverse=True
-            )[:10]
-            try:
-                result = Result(
-                    url=url,
-                    result_all=raw_word_count,
-                    result_no_stop_words=no_stop_words_count
-                )
-                db.session.add(result)
-                db.session.commit()
-            except:
-                errors.append("Unable to add item to database.")
-    return render_template('index.html', errors=errors, results=results)
 
 
 @app.route("/results/<job_key>", methods=['GET'])
