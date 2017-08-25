@@ -95,7 +95,7 @@ def get_results(job_key):
             key=operator.itemgetter(1),
             reverse=True
         )[:10]
-        print('YEEEP')
+        print("OK")
         return jsonify(results)
     else:
         print('NOPE')
