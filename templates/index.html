@@ -1,23 +1,82 @@
 <!DOCTYPE html>
-<html ng-app ="WordcountApp">
-  <head>
-    <title>Bears count too</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" type="text/css" href="../static/main.css">
-    <style>
-      .container {
-        max-width: 1000px;
-      }
+<html lang="en" ng-app ="WordcountApp">
 
-    </style>
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Job Post Skimmer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/grayscale.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+
   </head>
-  <body ng-controller="WordcountController">
-    <div class="container">
+
+  <body ng-controller="WordcountController" id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Job Description Skimmer</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">Try It</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">About Me</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="masthead">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h1 class="brand-heading">Find the Focus</h1>
+              <p class="intro-text">Quickly show which words show up most often in a job posting to better tailor a resume when applying</p>
+              <a href="#about" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Try Section -->
+    <section id="about" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Try it out</h2>
+            <div class="container">
       <div class="row">
       
-        <div class="col-sm-5 col-sm-offset-1">
-          <h1>Bearcount</h1>
+        <div class="col-sm-5 col-sm-offset-1">          
           <br>
           <form role="form" ng-submit="getResults()">
             <div class="form-group">
@@ -58,17 +117,82 @@
   </table>
 </div>
 <img class="col-sm-3 col-sm-offset-4" src="{{ url_for('static',
-  filename='spinner.gif') }}" ng-show="loading">
+  filename='img/spinner.gif') }}" ng-show="loading">
         </div>
       </div>
       <br>
       <word-count-chart data="wordcounts"></word-count-chart>
     </div>
-    <br><br>
-    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Contact Me</h2>
+            <p>Feel free to contact me at caterson.daniel@gmail.com</p>
+            
+            <ul class="list-inline banner-social-buttons">
+               
+              <li class="list-inline-item">
+                <a href="https://drive.google.com/file/d/0BxV42THiF7x6V3ZBRDVzd2s5U0E/view?usp=sharing" class="btn btn-default btn-lg">
+                  <i class="fa fa-newspaper-o fa-fw"></i>
+                  <span class="network-name">View Resume</span>
+                </a>
+              </li>
+             
+              
+              <li class="list-inline-item">
+                <a href="https://github.com/DanielCatz/JobPostReader" class="btn btn-default btn-lg">
+                  <i class="fa fa-github fa-fw"></i>
+                  <span class="network-name">Github</span>
+                </a>
+              </li>
+
+            
+              <li class="list-inline-item">
+                <a href="mailto:caterson.daniel@gmail.com?Subject=Hello%20Daniel" class="btn btn-default btn-lg">
+                  <i class="fa fa-envelope fa-fw"></i>
+                  <span class="network-name">Email</span>
+                </a>
+              </li>
+              
+            
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer>
+      <div class="container text-center">
+        <p>Nothing to see here</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/popper/popper.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+        <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+   <script src="{{ url_for('static', filename='js/grayscale.min.js') }}"></script>
+
   </body>
+
 </html>
