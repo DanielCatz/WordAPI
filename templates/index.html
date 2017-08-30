@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Job Post Skimmer</title>
+    <title>Job Description Skimmer</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Try It</a>
+              <a class="nav-link js-scroll-trigger" href="#about">Skimmer</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">About Me</a>
@@ -80,6 +80,7 @@
           <br>
           <form role="form" ng-submit="getResults()">
             <div class="form-group">
+            <p>Enter tht URL for the job post</p>
               <input type="text" ng-model="url" name="url" class="form-control" id="url-box" placeholder="Enter URL..." style="max-width: 300px;" required>
             </div>
             {%raw%}
